@@ -1,9 +1,6 @@
 package com.example.davidoffrede.myapplication.feature.list.presentation.view
 
-import android.content.Context
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager

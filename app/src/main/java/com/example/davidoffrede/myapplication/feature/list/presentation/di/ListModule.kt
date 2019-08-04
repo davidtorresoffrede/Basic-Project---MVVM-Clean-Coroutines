@@ -11,8 +11,6 @@ val listModule = module {
 
     single<BaseUseCase<List<ItemDomain>, BaseUseCase.None>>("GetItensUseCase") { GetItensUseCase(get()) }
 
-//    factory { SectionedRecyclerViewAdapter() }
-
     viewModel { ListViewModel(get("GetItensUseCase")) }
 
 }

@@ -1,3 +1,5 @@
 package com.example.davidoffrede.myapplication.core.data.model
 
-data class ItemData(val title: String)
+import com.google.gson.annotations.SerializedName
+
+data class ItemData(@SerializedName("name") val title: String)
