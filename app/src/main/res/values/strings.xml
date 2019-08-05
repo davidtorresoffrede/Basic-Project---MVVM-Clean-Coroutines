@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="list_screen_title">Lista</string>
+    <string name="detail_screen_title">Detalhe</string>
+
 
     <string name="empty"></string>
 </resources>

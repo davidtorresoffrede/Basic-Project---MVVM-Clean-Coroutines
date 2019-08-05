@@ -14,6 +14,11 @@ abstract class BaseActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
     override fun setContentView(layoutResID: Int) {
         layoutInflater.inflate(layoutResID, activityContainer, true)
     }

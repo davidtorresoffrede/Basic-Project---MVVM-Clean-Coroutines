@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.davidoffrede.myapplication.R
 import com.example.davidoffrede.myapplication.core.presentation.model.Item
 import com.example.davidoffrede.myapplication.core.presentation.view.BaseActivity
+import com.example.davidoffrede.myapplication.feature.detail.presentation.view.DetailActivity
 import com.example.davidoffrede.myapplication.feature.list.presentation.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.activity_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -18,6 +19,7 @@ class ListActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+        title = getString(R.string.list_screen_title)
 
         showItens()
         getItens(savedInstanceState)
@@ -29,7 +31,7 @@ class ListActivity : BaseActivity() {
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
                 adapter = ListAdapter(it) {
-                    Toast.makeText(this@ListActivity, it.title, Toast.LENGTH_LONG).show()
+                    startActivity(DetailActivity.newIntent(this@ListActivity, it))
                 }
             }
         })
