@@ -8,6 +8,6 @@ import retrofit2.http.GET
 interface ApiService {
 
     @GET("orgs/octokit/repos")
-    fun getItens(): Deferred<Response<List<ItemData>>>
+    suspend fun getItens(): Response<List<ItemData>>
 
 }

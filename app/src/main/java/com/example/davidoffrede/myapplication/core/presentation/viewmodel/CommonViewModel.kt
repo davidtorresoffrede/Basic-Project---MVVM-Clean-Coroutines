@@ -1,11 +1,11 @@
 package com.example.davidoffrede.myapplication.core.presentation.viewmodel
 
-import androidx.lifecycle.ViewModel
+import d.offrede.base.viewmodel.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.Job
 
-open class BaseViewModel : ViewModel(), CoroutineScope {
+abstract class CommonViewModel : BaseViewModel(), CoroutineScope {
 
   override val coroutineContext = Main
 

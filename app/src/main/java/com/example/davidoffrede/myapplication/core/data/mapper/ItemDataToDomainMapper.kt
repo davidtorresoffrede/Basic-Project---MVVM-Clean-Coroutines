@@ -1,7 +1,7 @@
 package com.example.davidoffrede.myapplication.core.data.mapper
 
 import com.example.davidoffrede.myapplication.core.data.model.ItemData
-import com.example.davidoffrede.myapplication.core.domain.mapper.BaseMapper
+import d.offrede.base.mapper.BaseMapper
 import com.example.davidoffrede.myapplication.core.domain.model.ItemDomain
 
 object ItemDataToDomainMapper : BaseMapper<ItemData, ItemDomain>() {

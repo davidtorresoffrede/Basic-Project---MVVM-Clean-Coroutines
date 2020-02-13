@@ -2,11 +2,10 @@ package com.example.davidoffrede.myapplication.feature.detail.presentation.view
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.davidoffrede.myapplication.R
 import com.example.davidoffrede.myapplication.core.presentation.model.Item
-import com.example.davidoffrede.myapplication.core.presentation.view.BaseActivity
+import d.offrede.base.view.BaseActivity
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : BaseActivity() {
@@ -23,7 +22,7 @@ class DetailActivity : BaseActivity() {
     }
 
     private fun loadExtras() {
-        text.text =  intent.getParcelableExtra<Item>(INTENT_EXTRA_PARAM_ITEM).title
+        text.text =  intent?.getParcelableExtra<Item>(INTENT_EXTRA_PARAM_ITEM)?.title
     }
 
     companion object {

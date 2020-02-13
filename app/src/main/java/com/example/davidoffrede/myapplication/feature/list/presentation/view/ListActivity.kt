@@ -1,12 +1,11 @@
 package com.example.davidoffrede.myapplication.feature.list.presentation.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.davidoffrede.myapplication.R
 import com.example.davidoffrede.myapplication.core.presentation.model.Item
-import com.example.davidoffrede.myapplication.core.presentation.view.BaseActivity
+import d.offrede.base.view.BaseActivity
 import com.example.davidoffrede.myapplication.feature.detail.presentation.view.DetailActivity
 import com.example.davidoffrede.myapplication.feature.list.presentation.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.activity_list.*

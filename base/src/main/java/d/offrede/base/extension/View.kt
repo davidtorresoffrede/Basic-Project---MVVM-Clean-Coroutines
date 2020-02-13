@@ -1,4 +1,4 @@
-package com.example.davidoffrede.myapplication.core.extension
+package d.offrede.base.extension
 
 import android.view.View
 

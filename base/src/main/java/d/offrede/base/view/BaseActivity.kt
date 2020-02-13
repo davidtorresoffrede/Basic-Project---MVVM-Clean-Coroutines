@@ -1,8 +1,8 @@
-package com.example.davidoffrede.myapplication.core.presentation.view
+package d.offrede.base.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.davidoffrede.myapplication.R
+import d.offrede.base.R
 import kotlinx.android.synthetic.main.activity_container.*
 import kotlinx.android.synthetic.main.include_toolbar.toolbar
 

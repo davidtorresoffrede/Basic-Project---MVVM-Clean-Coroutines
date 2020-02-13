@@ -1,12 +1,12 @@
-package com.example.davidoffrede.myapplication.core.presentation.view
+package d.offrede.base.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.davidoffrede.myapplication.core.extension.invisible
-import com.example.davidoffrede.myapplication.core.extension.visible
+import d.offrede.base.extension.invisible
+import d.offrede.base.extension.visible
 import kotlinx.android.synthetic.main.include_progress.*
 
 abstract class BaseFragment : Fragment() {
