@@ -7,13 +7,18 @@ import com.example.davidoffrede.myapplication.core.presentation.model.Item
 import com.example.davidoffrede.myapplication.core.presentation.viewmodel.CommonViewModel
 import d.offrede.base.usecase.BaseUseCase
 import d.offrede.base.usecase.UseCaseResult
+import d.offrede.base.viewmodel.SuccessResult
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ListViewModel(val getItensUseCase: BaseUseCase<List<ItemDomain>, BaseUseCase.None>) : CommonViewModel() {
+class ListViewModel(
+    private val getItensUseCase: BaseUseCase<List<ItemDomain>, BaseUseCase.None>
+) : CommonViewModel() {
 
-    val itens = MutableLiveData<List<Item>>()
+    private val resultLiveData: MutableLiveData<SuccessResult<List<Item>>> = MutableLiveData()
+
+    fun resultLiveData() = resultLiveData
 
     fun getItens() {
         jobs add launch {
@@ -21,12 +26,20 @@ class ListViewModel(val getItensUseCase: BaseUseCase<List<ItemDomain>, BaseUseCa
             val result = withContext(IO) { getItensUseCase.run(BaseUseCase.None()) }
 
             when (result) {
-                is UseCaseResult.Success -> itens.value = result.data.map {
-                    ItemDomainToViewMapper.transform(it)
-                }
-                is UseCaseResult.Failure -> itens.value = listOf()
+                is UseCaseResult.Success -> handleSuccess(
+                    SuccessResult.Success(
+                        result.data.map {
+                            ItemDomainToViewMapper.transform(it)
+                        }
+                    )
+                )
+                is UseCaseResult.Failure -> handleSuccess(SuccessResult.Success(listOf<Item>()))
             }
         }
+    }
+
+    private fun handleSuccess(successResult: SuccessResult<List<Item>>) {
+        this.resultLiveData.value = successResult
     }
 
 }
