@@ -8,7 +8,7 @@ import com.example.davidoffrede.myapplication.core.presentation.model.Item
 import d.offrede.base.view.BaseActivity
 import com.example.davidoffrede.myapplication.feature.detail.presentation.view.DetailActivity
 import com.example.davidoffrede.myapplication.feature.list.presentation.viewmodel.ListViewModel
-import d.offrede.base.viewmodel.SuccessResult
+import d.offrede.base.viewmodel.ViewModelResult
 import kotlinx.android.synthetic.main.activity_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -25,15 +25,17 @@ class ListActivity : BaseActivity() {
         getItens(savedInstanceState)
     }
 
+    override fun baseViewModel() = viewModel
+
     private fun showItens() {
-        viewModel.resultLiveData().observe(this, Observer<SuccessResult<List<Item>>> {
+        viewModel.resultLiveData().observe(this, Observer<ViewModelResult<List<Item>>> {
             when (it) {
-                is SuccessResult.Success -> {
+                is ViewModelResult.Success -> {
                     with(recycler) {
                         layoutManager = LinearLayoutManager(context)
                         setHasFixedSize(true)
-                        adapter = ListAdapter(it.data) {
-                            startActivity(DetailActivity.newIntent(this@ListActivity, it))
+                        adapter = ListAdapter(it.data) { item ->
+                            startActivity(DetailActivity.newIntent(this@ListActivity, item))
                         }
                     }
                 }

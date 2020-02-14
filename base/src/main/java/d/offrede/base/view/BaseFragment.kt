@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import d.offrede.base.extension.gone
 import d.offrede.base.extension.invisible
 import d.offrede.base.extension.visible
 import kotlinx.android.synthetic.main.include_progress.*
@@ -18,6 +19,6 @@ abstract class BaseFragment : Fragment() {
 
     protected fun showProgress() = with(activity) { if (this is BaseActivity) progress.visible() }
 
-    protected fun hideProgress() = with(activity) { if (this is BaseActivity) progress.invisible() }
+    protected fun hideProgress() = with(activity) { if (this is BaseActivity) progress.gone() }
 
 }
