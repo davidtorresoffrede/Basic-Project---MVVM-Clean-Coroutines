@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import d.offrede.base.R
 import d.offrede.base.extension.gone
-import d.offrede.base.extension.invisible
 import d.offrede.base.extension.visible
 import d.offrede.base.viewmodel.BaseViewModel
 import d.offrede.base.viewmodel.ViewModelResult
@@ -17,6 +16,8 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         super.setContentView(R.layout.activity_container)
+        configureToolbarLayout()
+        configureLoadingLayout()
         setSupportActionBar(toolbar)
         observeLoading()
     }
@@ -28,26 +29,29 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun setContentView(layoutResID: Int) {
         layoutInflater.inflate(layoutResID, activityContainer, true)
-        layoutInflater.inflate(layoutLoading(), progressContainer, true)
     }
 
     open fun baseViewModel(): BaseViewModel? = null
 
-    open fun layoutLoading(): Int = R.layout.include_progress
+    open fun loadingLayout(): Int = R.layout.include_progress
+
+    open fun toolbarLayout(): Int = R.layout.include_toolbar
 
     protected fun observeLoading() {
         baseViewModel()?.loadingLiveData()?.observe(this, Observer<ViewModelResult.Loading> {
             when (it.show) {
-                true -> {
-                    progressContainer.visible()
-                    activityContainer.invisible()
-                }
-                false -> {
-                    progressContainer.gone()
-                    activityContainer.visible()
-                }
+                true -> progressContainer.visible()
+                false -> progressContainer.gone()
             }
         })
+    }
+
+    private fun configureLoadingLayout() {
+        layoutInflater.inflate(loadingLayout(), progressContainer, true)
+    }
+
+    private fun configureToolbarLayout() {
+        layoutInflater.inflate(toolbarLayout(), toolbarContainer, true)
     }
 
 }
