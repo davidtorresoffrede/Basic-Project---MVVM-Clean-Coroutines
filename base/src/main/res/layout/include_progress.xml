@@ -7,8 +7,7 @@
         android:background="@color/transparent_gray"
         android:clickable="true"
         android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:visibility="gone">
+        android:focusableInTouchMode="true">
 
     <ProgressBar
             style="?android:attr/progressBarStyleLarge"

@@ -13,12 +13,16 @@ abstract class BaseViewModel : ViewModel() {
     fun loadingLiveData() = loadingLiveData
 
 
-    protected fun handleFailure(failureResult: ViewModelResult.Failure) {
-        this.failureLiveData.value = failureResult
+    protected fun handleFailure(message: String) {
+        this.failureLiveData.value = ViewModelResult.Failure(message)
     }
 
-    protected fun handleLoading(loadingResult: ViewModelResult.Loading) {
-        this.loadingLiveData.value = loadingResult
+    protected fun showLoading() {
+        this.loadingLiveData.value = ViewModelResult.Loading(true)
+    }
+
+    protected fun hideLoading() {
+        this.loadingLiveData.value = ViewModelResult.Loading(false)
     }
 
 }

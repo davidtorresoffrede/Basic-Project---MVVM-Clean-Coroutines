@@ -16,29 +16,34 @@ class ListViewModel(
     private val getItensUseCase: BaseUseCase<List<ItemDomain>, BaseUseCase.None>
 ) : CommonViewModel() {
 
-    private val resultLiveData: MutableLiveData<ViewModelResult.Success<List<Item>>> = MutableLiveData()
+    private val resultLiveData: MutableLiveData<ViewModelResult.Success<List<Item>>> =
+        MutableLiveData()
 
     fun resultLiveData() = resultLiveData
 
     fun getItens() {
         jobs add launch {
+            showLoading()
             val result = withContext(IO) { getItensUseCase.run(BaseUseCase.None()) }
-
+            hideLoading()
             when (result) {
-                is UseCaseResult.Success -> handleSuccess(
-                    ViewModelResult.Success(
+                is UseCaseResult.Success -> {
+                    handleSuccess(
                         result.data.map {
                             ItemDomainToViewMapper.transform(it)
                         }
+
                     )
-                )
-                is UseCaseResult.Failure -> handleSuccess(ViewModelResult.Success(listOf<Item>()))
+                }
+                is UseCaseResult.Failure -> {
+                    handleSuccess(listOf())
+                }
             }
         }
     }
 
-    private fun handleSuccess(successResult: ViewModelResult.Success<List<Item>>) {
-        this.resultLiveData.value = successResult
+    private fun handleSuccess(data: List<Item>) {
+        this.resultLiveData.value = ViewModelResult.Success(data)
     }
 
 }

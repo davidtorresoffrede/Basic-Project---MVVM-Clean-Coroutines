@@ -10,7 +10,6 @@ import d.offrede.base.extension.visible
 import d.offrede.base.viewmodel.BaseViewModel
 import d.offrede.base.viewmodel.ViewModelResult
 import kotlinx.android.synthetic.main.activity_container.*
-import kotlinx.android.synthetic.main.include_progress.*
 import kotlinx.android.synthetic.main.include_toolbar.toolbar
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -20,7 +19,6 @@ abstract class BaseActivity : AppCompatActivity() {
         super.setContentView(R.layout.activity_container)
         setSupportActionBar(toolbar)
         observeLoading()
-        observeFailure()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -30,30 +28,25 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun setContentView(layoutResID: Int) {
         layoutInflater.inflate(layoutResID, activityContainer, true)
+        layoutInflater.inflate(layoutLoading(), progressContainer, true)
     }
 
     open fun baseViewModel(): BaseViewModel? = null
+
+    open fun layoutLoading(): Int = R.layout.include_progress
 
     protected fun observeLoading() {
         baseViewModel()?.loadingLiveData()?.observe(this, Observer<ViewModelResult.Loading> {
             when (it.show) {
                 true -> {
-                    progress.visible()
+                    progressContainer.visible()
                     activityContainer.invisible()
                 }
                 false -> {
-                    progress.gone()
+                    progressContainer.gone()
                     activityContainer.visible()
                 }
             }
-        })
-    }
-
-    protected fun observeFailure() {
-        baseViewModel()?.failureLiveData()?.observe(this, Observer<ViewModelResult.Failure> {
-
-
-
         })
     }
 
