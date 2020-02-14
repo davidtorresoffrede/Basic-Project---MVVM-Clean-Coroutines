@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import d.offrede.base.R
 import d.offrede.base.extension.gone
+import d.offrede.base.extension.invisible
 import d.offrede.base.extension.visible
 import d.offrede.base.viewmodel.BaseViewModel
 import d.offrede.base.viewmodel.ViewModelResult
@@ -38,11 +39,12 @@ abstract class BaseActivity : AppCompatActivity() {
     open fun toolbarLayout(): Int = R.layout.include_toolbar
 
     protected fun observeLoading() {
-        baseViewModel()?.loadingLiveData()?.observe(this, Observer<ViewModelResult.Loading> {
-            when (it.show) {
-                true -> progressContainer.visible()
-                false -> progressContainer.gone()
-            }
+        baseViewModel()?.loadingLiveData()?.observe(this, {
+            progressContainer.visible()
+        }, {
+            progressContainer.invisible()
+        }, {
+            progressContainer.gone()
         })
     }
 

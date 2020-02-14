@@ -15,6 +15,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 const val BASE_URL = "https://api.github.com/"
 
@@ -28,6 +29,8 @@ val apiModule = module {
         OkHttpClient.Builder()
             .addInterceptor(get<HttpLoggingInterceptor>(named("logger")))
             .addInterceptor(get<Interceptor>(named("headers")))
+            .readTimeout(10, TimeUnit.SECONDS)
+            .connectTimeout(10, TimeUnit.SECONDS)
             .build()
     }
 
