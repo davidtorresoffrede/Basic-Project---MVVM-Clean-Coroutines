@@ -1,13 +1,10 @@
 <resources>
 
     /* Toolbar */
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
     <style name="BaseToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:background">#fffafafa</item>
         <item name="android:textColorPrimary">@color/dark_gray</item>
+        <item name="android:elevation">@dimen/include_toolbar_elevation</item>
         <item name="elevation">@dimen/include_toolbar_elevation</item>
     </style>
 
