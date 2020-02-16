@@ -1,6 +1,7 @@
 <resources>
 
     /* Toolbar */
+
     <style name="BaseToolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:background">#fffafafa</item>
         <item name="android:textColorPrimary">@color/dark_gray</item>
@@ -9,4 +10,13 @@
     </style>
 
 
+    /* Loading Container */
+
+    <style name="IncludeLoadingProgress" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">@dimen/include_loading_progress_width</item>
+        <item name="android:layout_height">@dimen/include_loading_progress_height</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:tint">@color/include_loading_tint_progress</item>
+        <item name="android:indeterminateTint">@color/include_loading_tint_progress</item>
+    </style>
 </resources>

@@ -29,6 +29,7 @@
         <item name="android:layout_height">@dimen/include_empty_image_height</item>
         <item name="android:src">@drawable/ic_empty</item>
         <item name="android:contentDescription">@null</item>
+        <item name="android:tint">@color/include_empty_tint_image</item>
     </style>
 
     <style name="IncludeEmptyText">
@@ -40,11 +41,11 @@
         <item name="android:layout_marginEnd">@dimen/include_empty_text_margin_right</item>
         <item name="android:textColor">@color/include_empty_text</item>
         <item name="android:textSize">@dimen/include_empty_text_text_size</item>
-        <item name="android:tint">@color/include_empty_tint_image</item>
     </style>
 
 
     /* Failure Container */
+
     <style name="IncludeFailureContainer">
         <item name="android:paddingTop">@dimen/include_failure_container_padding_top</item>
         <item name="android:paddingLeft">@dimen/include_failure_container_padding_left</item>
@@ -59,6 +60,7 @@
         <item name="android:layout_height">@dimen/include_failure_image_height</item>
         <item name="android:src">@drawable/ic_failure</item>
         <item name="android:contentDescription">@null</item>
+        <item name="android:tint">@color/include_failure_tint_image</item>
     </style>
 
     <style name="IncludeFailureText">
@@ -70,7 +72,40 @@
         <item name="android:layout_marginEnd">@dimen/include_failure_text_margin_right</item>
         <item name="android:textColor">@color/include_failure_text</item>
         <item name="android:textSize">@dimen/include_failure_text_text_size</item>
-        <item name="android:tint">@color/include_failure_tint_image</item>
+    </style>
+
+
+    /* Loading Container */
+
+    <style name="IncludeLoadingContainer">
+        <item name="android:paddingTop">@dimen/include_failure_container_padding_top</item>
+        <item name="android:paddingLeft">@dimen/include_failure_container_padding_left</item>
+        <item name="android:paddingStart">@dimen/include_failure_container_padding_left</item>
+        <item name="android:paddingRight">@dimen/include_failure_container_padding_right</item>
+        <item name="android:paddingEnd">@dimen/include_failure_container_padding_right</item>
+        <item name="android:paddingBottom">@dimen/include_failure_container_padding_bottom</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:background">@color/include_loading_container_background</item>
+    </style>
+
+    <style name="IncludeLoadingProgress" parent="@style/Widget.AppCompat.ProgressBar">
+        <item name="android:layout_width">@dimen/include_loading_progress_width</item>
+        <item name="android:layout_height">@dimen/include_loading_progress_height</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:tint">@color/include_loading_tint_progress</item>
+    </style>
+
+    <style name="IncludeLoadingText">
+        <item name="android:layout_marginTop">@dimen/include_loading_text_margin_top</item>
+        <item name="android:layout_marginLeft">@dimen/include_loading_text_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/include_loading_text_margin_left</item>
+        <item name="android:layout_marginBottom">@dimen/include_loading_text_margin_bottom</item>
+        <item name="android:layout_marginRight">@dimen/include_loading_text_margin_right</item>
+        <item name="android:layout_marginEnd">@dimen/include_loading_text_margin_right</item>
+        <item name="android:textColor">@color/include_loading_text</item>
+        <item name="android:textSize">@dimen/include_loading_text_text_size</item>
     </style>
 
 </resources>
