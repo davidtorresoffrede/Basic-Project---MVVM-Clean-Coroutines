@@ -21,6 +21,12 @@
             android:layout_below="@+id/toolbarContainer"/>
 
     <FrameLayout
+            android:id="@+id/emptyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbarContainer"/>
+
+    <FrameLayout
             android:id="@+id/progressContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
