@@ -19,6 +19,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.setContentView(R.layout.activity_container)
         configureToolbarLayout()
         configureLoadingLayout()
+        configureFailureLayout()
         setSupportActionBar(toolbar)
         observeLoading()
     }
@@ -38,6 +39,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun toolbarLayout(): Int = R.layout.include_toolbar
 
+    open fun failureLayout(): Int = R.layout.include_failure
+
     protected fun observeLoading() {
         baseViewModel()?.loadingLiveData()?.observe(this, {
             progressContainer.visible()
@@ -54,6 +57,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun configureToolbarLayout() {
         layoutInflater.inflate(toolbarLayout(), toolbarContainer, true)
+    }
+
+    private fun configureFailureLayout() {
+        layoutInflater.inflate(failureLayout(), failureContainer, true)
     }
 
 }
