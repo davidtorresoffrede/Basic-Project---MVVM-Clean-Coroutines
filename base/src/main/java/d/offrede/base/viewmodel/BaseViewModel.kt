@@ -16,27 +16,33 @@ abstract class BaseViewModel : ViewModel() {
     fun loadingLiveData() = loadingLiveData
 
 
-    protected fun showFailure(message: String) {
+    open fun showFailure(message: String = "") {
+        hideEmpty()
+        hideLoading()
         this.failureLiveData.makeVisible(Failure(message))
     }
 
-    protected fun hideFailure() {
-        this.failureLiveData.makeGone(Failure(""))
+    open fun hideFailure() {
+        this.failureLiveData.makeGone(Failure())
     }
 
-    protected fun showEmpty(message: String) {
+    open fun showEmpty(message: String = "") {
+        hideFailure()
+        hideLoading()
         this.emptyLiveData.makeVisible(Empty(message))
     }
 
-    protected fun hideEmpty() {
-        this.emptyLiveData.makeGone(Empty(""))
+    open fun hideEmpty() {
+        this.emptyLiveData.makeGone(Empty())
     }
 
-    protected fun showLoading() {
+    open fun showLoading() {
+        hideFailure()
+        hideEmpty()
         this.loadingLiveData.makeVisible(Loading())
     }
 
-    protected fun hideLoading() {
+    open fun hideLoading() {
         this.loadingLiveData.makeGone(Loading())
     }
 

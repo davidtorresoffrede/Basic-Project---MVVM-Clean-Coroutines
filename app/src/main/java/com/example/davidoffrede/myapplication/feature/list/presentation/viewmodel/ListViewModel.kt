@@ -1,23 +1,23 @@
 package com.example.davidoffrede.myapplication.feature.list.presentation.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import com.example.davidoffrede.myapplication.core.domain.model.ItemDomain
 import com.example.davidoffrede.myapplication.core.presentation.mapper.ItemDomainToViewMapper
 import com.example.davidoffrede.myapplication.core.presentation.model.Item
 import com.example.davidoffrede.myapplication.core.presentation.viewmodel.CommonViewModel
 import d.offrede.base.usecase.BaseUseCase
 import d.offrede.base.usecase.UseCaseResult
-import d.offrede.base.viewmodel.ViewModelResult
+import d.offrede.base.viewmodel.BaseLiveData
+import d.offrede.base.viewmodel.ViewModelResult.Success
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import d.offrede.base.viewmodel.VisibilityStatus.GONE
 
 class ListViewModel(
     private val getItensUseCase: BaseUseCase<List<ItemDomain>, BaseUseCase.None>
 ) : CommonViewModel() {
 
-    private val resultLiveData: MutableLiveData<ViewModelResult.Success<List<Item>>> =
-        MutableLiveData()
+    private val resultLiveData: BaseLiveData<Success<List<Item>>> = BaseLiveData()
 
     fun resultLiveData() = resultLiveData
 
@@ -28,22 +28,48 @@ class ListViewModel(
             hideLoading()
             when (result) {
                 is UseCaseResult.Success -> {
-                    handleSuccess(
-                        result.data.map {
-                            ItemDomainToViewMapper.transform(it)
-                        }
+                    val listItens = result.data.map {
+                        ItemDomainToViewMapper.transform(it)
+                    }
 
-                    )
+                    if (listItens.isNotEmpty()) {
+                        showSuccess(listItens)
+                    } else {
+                        showEmpty()
+                    }
                 }
                 is UseCaseResult.Failure -> {
-                    handleSuccess(listOf())
+                    showFailure()
                 }
             }
         }
     }
 
-    private fun handleSuccess(data: List<Item>) {
-        this.resultLiveData.value = ViewModelResult.Success(data)
+    private fun showSuccess(data: List<Item>) {
+        this.resultLiveData.makeVisible(Success(data))
+        hideEmpty()
+        hideFailure()
+        hideLoading()
+    }
+
+    private fun hideSuccess() {
+        this.resultLiveData.value =
+            GONE to Success(this.resultLiveData.value?.second?.data ?: listOf())
+    }
+
+    override fun showLoading() {
+        super.showLoading()
+        hideSuccess()
+    }
+
+    override fun showEmpty(message: String) {
+        super.showEmpty(message)
+        hideSuccess()
+    }
+
+    override fun showFailure(message: String) {
+        super.showFailure(message)
+        hideSuccess()
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.davidoffrede.myapplication.feature.list.presentation.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.davidoffrede.myapplication.R
@@ -28,18 +29,19 @@ class ListActivity : BaseActivity() {
     override fun baseViewModel() = viewModel
 
     private fun showItens() {
-        viewModel.resultLiveData().observe(this, Observer<ViewModelResult<List<Item>>> {
-            when (it) {
-                is ViewModelResult.Success -> {
-                    with(recycler) {
-                        layoutManager = LinearLayoutManager(context)
-                        setHasFixedSize(true)
-                        adapter = ListAdapter(it.data) { item ->
-                            startActivity(DetailActivity.newIntent(this@ListActivity, item))
-                        }
-                    }
+        viewModel.resultLiveData().observe(this, {
+            recycler.apply {
+                visibility = View.VISIBLE
+                layoutManager = LinearLayoutManager(context)
+                setHasFixedSize(true)
+                adapter = ListAdapter(it.data) { item ->
+                    startActivity(DetailActivity.newIntent(this@ListActivity, item))
                 }
             }
+        }, {
+            recycler.visibility = View.INVISIBLE
+        }, {
+            recycler.visibility = View.GONE
         })
     }
 
