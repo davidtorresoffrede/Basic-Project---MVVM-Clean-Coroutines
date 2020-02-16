@@ -2,4 +2,7 @@
 <resources>
     <color name="dark_gray">#5b646d</color>
     <color name="transparent_gray">#22000000</color>
+
+    /* Empty Container */
+    <color name="include_empty_text">#000</color>
 </resources>
