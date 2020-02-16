@@ -23,6 +23,7 @@ abstract class BaseActivity : AppCompatActivity() {
         configureEmptyLayout()
         setSupportActionBar(toolbar)
         observeLoading()
+        observeFailure()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -51,6 +52,16 @@ abstract class BaseActivity : AppCompatActivity() {
             progressContainer.invisible()
         }, {
             progressContainer.gone()
+        })
+    }
+
+    protected fun observeFailure() {
+        baseViewModel()?.failureLiveData()?.observe(this, {
+            failureContainer.visible()
+        }, {
+            failureContainer.invisible()
+        }, {
+            failureContainer.gone()
         })
     }
 
