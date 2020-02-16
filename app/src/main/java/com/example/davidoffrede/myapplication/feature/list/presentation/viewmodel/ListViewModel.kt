@@ -23,7 +23,7 @@ class ListViewModel(
 
     fun getItens() {
         jobs add launch {
-            showLoading()
+            showLoading("Aguarde...")
             val result = withContext(IO) { getItensUseCase.run(BaseUseCase.None()) }
             hideLoading()
             when (result) {
@@ -35,11 +35,11 @@ class ListViewModel(
                     if (listItens.isNotEmpty()) {
                         showSuccess(listItens)
                     } else {
-                        showEmpty()
+                        showEmpty("Lista vazia")
                     }
                 }
                 is UseCaseResult.Failure -> {
-                    showFailure()
+                    showFailure("Ocorreu um erro inesperado")
                 }
             }
         }
@@ -57,8 +57,8 @@ class ListViewModel(
             GONE to Success(this.resultLiveData.value?.second?.data ?: listOf())
     }
 
-    override fun showLoading() {
-        super.showLoading()
+    override fun showLoading(message: String) {
+        super.showLoading(message)
         hideSuccess()
     }
 

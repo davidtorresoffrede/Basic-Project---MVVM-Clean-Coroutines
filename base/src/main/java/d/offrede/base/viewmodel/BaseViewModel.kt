@@ -36,10 +36,10 @@ abstract class BaseViewModel : ViewModel() {
         this.emptyLiveData.makeGone(Empty())
     }
 
-    open fun showLoading() {
+    open fun showLoading(message: String = "") {
         hideFailure()
         hideEmpty()
-        this.loadingLiveData.makeVisible(Loading())
+        this.loadingLiveData.makeVisible(Loading(message))
     }
 
     open fun hideLoading() {
