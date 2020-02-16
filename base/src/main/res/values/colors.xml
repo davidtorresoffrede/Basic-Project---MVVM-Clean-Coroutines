@@ -5,4 +5,9 @@
 
     /* Empty Container */
     <color name="include_empty_text">#000</color>
+    <color name="include_empty_tint_image">#FFEB3B</color>
+
+    /* Failure Container */
+    <color name="include_failure_text">#000</color>
+    <color name="include_failure_tint_image">#F44336</color>
 </resources>

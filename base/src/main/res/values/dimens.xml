@@ -18,4 +18,19 @@
     <dimen name="include_empty_text_margin_right">0dp</dimen>
     <dimen name="include_empty_text_text_size">14sp</dimen>
 
+    /* Failure Container */
+    <dimen name="include_failure_container_padding_top">16dp</dimen>
+    <dimen name="include_failure_container_padding_left">16dp</dimen>
+    <dimen name="include_failure_container_padding_bottom">16dp</dimen>
+    <dimen name="include_failure_container_padding_right">16dp</dimen>
+
+    <dimen name="include_failure_image_width">96dp</dimen>
+    <dimen name="include_failure_image_height">96dp</dimen>
+
+    <dimen name="include_failure_text_margin_top">16dp</dimen>
+    <dimen name="include_failure_text_margin_left">0dp</dimen>
+    <dimen name="include_failure_text_margin_bottom">0dp</dimen>
+    <dimen name="include_failure_text_margin_right">0dp</dimen>
+    <dimen name="include_failure_text_text_size">14sp</dimen>
+
 </resources>

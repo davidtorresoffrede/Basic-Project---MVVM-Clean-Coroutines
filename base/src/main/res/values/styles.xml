@@ -12,6 +12,7 @@
         <item name="elevation">@dimen/include_toolbar_elevation</item>
     </style>
 
+
     /* Empty Container */
 
     <style name="IncludeEmptyContainer">
@@ -30,7 +31,7 @@
         <item name="android:contentDescription">@null</item>
     </style>
 
-    <style name="IncludeEmptyImageText">
+    <style name="IncludeEmptyText">
         <item name="android:layout_marginTop">@dimen/include_empty_text_margin_top</item>
         <item name="android:layout_marginLeft">@dimen/include_empty_text_margin_left</item>
         <item name="android:layout_marginStart">@dimen/include_empty_text_margin_left</item>
@@ -39,5 +40,37 @@
         <item name="android:layout_marginEnd">@dimen/include_empty_text_margin_right</item>
         <item name="android:textColor">@color/include_empty_text</item>
         <item name="android:textSize">@dimen/include_empty_text_text_size</item>
+        <item name="android:tint">@color/include_empty_tint_image</item>
     </style>
+
+
+    /* Failure Container */
+    <style name="IncludeFailureContainer">
+        <item name="android:paddingTop">@dimen/include_failure_container_padding_top</item>
+        <item name="android:paddingLeft">@dimen/include_failure_container_padding_left</item>
+        <item name="android:paddingStart">@dimen/include_failure_container_padding_left</item>
+        <item name="android:paddingRight">@dimen/include_failure_container_padding_right</item>
+        <item name="android:paddingEnd">@dimen/include_failure_container_padding_right</item>
+        <item name="android:paddingBottom">@dimen/include_failure_container_padding_bottom</item>
+    </style>
+
+    <style name="IncludeFailureImage">
+        <item name="android:layout_width">@dimen/include_failure_image_width</item>
+        <item name="android:layout_height">@dimen/include_failure_image_height</item>
+        <item name="android:src">@drawable/ic_failure</item>
+        <item name="android:contentDescription">@null</item>
+    </style>
+
+    <style name="IncludeFailureText">
+        <item name="android:layout_marginTop">@dimen/include_failure_text_margin_top</item>
+        <item name="android:layout_marginLeft">@dimen/include_failure_text_margin_left</item>
+        <item name="android:layout_marginStart">@dimen/include_failure_text_margin_left</item>
+        <item name="android:layout_marginBottom">@dimen/include_failure_text_margin_bottom</item>
+        <item name="android:layout_marginRight">@dimen/include_failure_text_margin_right</item>
+        <item name="android:layout_marginEnd">@dimen/include_failure_text_margin_right</item>
+        <item name="android:textColor">@color/include_failure_text</item>
+        <item name="android:textSize">@dimen/include_failure_text_text_size</item>
+        <item name="android:tint">@color/include_failure_tint_image</item>
+    </style>
+
 </resources>
