@@ -6,9 +6,12 @@ import d.offrede.base.viewmodel.ViewModelResult.*
 abstract class BaseViewModel : ViewModel() {
 
     private val failureLiveData: BaseLiveData<Failure> = BaseLiveData()
+    private val emptyLiveData: BaseLiveData<Empty> = BaseLiveData()
     private val loadingLiveData: BaseLiveData<Loading> = BaseLiveData()
 
     fun failureLiveData() = failureLiveData
+
+    fun emptyLiveData() = emptyLiveData
 
     fun loadingLiveData() = loadingLiveData
 
@@ -19,6 +22,14 @@ abstract class BaseViewModel : ViewModel() {
 
     protected fun hideFailure() {
         this.failureLiveData.makeGone(Failure(""))
+    }
+
+    protected fun showEmpty(message: String) {
+        this.emptyLiveData.makeVisible(Empty(message))
+    }
+
+    protected fun hideEmpty() {
+        this.emptyLiveData.makeGone(Empty(""))
     }
 
     protected fun showLoading() {

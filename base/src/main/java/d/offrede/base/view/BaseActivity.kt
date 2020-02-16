@@ -17,13 +17,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         super.setContentView(R.layout.activity_container)
-        configureToolbarLayout()
-        configureLoadingLayout()
-        configureFailureLayout()
-        configureEmptyLayout()
+        configureLayouts()
         setSupportActionBar(toolbar)
-        observeLoading()
-        observeFailure()
+        startObserves()
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -45,6 +41,26 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun emptyLayout(): Int = R.layout.include_empty
 
+    protected fun observeFailure() {
+        baseViewModel()?.failureLiveData()?.observe(this, {
+            failureContainer.visible()
+        }, {
+            failureContainer.invisible()
+        }, {
+            failureContainer.gone()
+        })
+    }
+
+    protected fun observeEmpty() {
+        baseViewModel()?.emptyLiveData()?.observe(this, {
+            emptyContainer.visible()
+        }, {
+            emptyContainer.invisible()
+        }, {
+            emptyContainer.gone()
+        })
+    }
+
     protected fun observeLoading() {
         baseViewModel()?.loadingLiveData()?.observe(this, {
             progressContainer.visible()
@@ -55,14 +71,17 @@ abstract class BaseActivity : AppCompatActivity() {
         })
     }
 
-    protected fun observeFailure() {
-        baseViewModel()?.failureLiveData()?.observe(this, {
-            failureContainer.visible()
-        }, {
-            failureContainer.invisible()
-        }, {
-            failureContainer.gone()
-        })
+    private fun configureLayouts() {
+        configureToolbarLayout()
+        configureFailureLayout()
+        configureEmptyLayout()
+        configureLoadingLayout()
+    }
+
+    private fun startObserves() {
+        observeLoading()
+        observeFailure()
+        observeEmpty()
     }
 
     private fun configureLoadingLayout() {
