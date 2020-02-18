@@ -1,6 +1,7 @@
 package d.offrede.base.view
 
 import android.os.Bundle
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import d.offrede.base.R
 import d.offrede.base.extension.gone
@@ -36,12 +37,16 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun fragment(): BaseFragment? = null
 
+    @LayoutRes
     open fun loadingLayout(): Int = R.layout.include_progress
 
+    @LayoutRes
     open fun toolbarLayout(): Int = R.layout.include_toolbar
 
+    @LayoutRes
     open fun failureLayout(): Int = R.layout.include_failure
 
+    @LayoutRes
     open fun emptyLayout(): Int = R.layout.include_empty
 
     protected fun observeFailure() {
