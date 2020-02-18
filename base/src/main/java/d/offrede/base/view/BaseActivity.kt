@@ -34,6 +34,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     open fun baseViewModel(): BaseViewModel? = null
 
+    open fun fragment(): BaseFragment? = null
+
     open fun loadingLayout(): Int = R.layout.include_progress
 
     open fun toolbarLayout(): Int = R.layout.include_toolbar
@@ -80,6 +82,7 @@ abstract class BaseActivity : AppCompatActivity() {
         configureFailureLayout()
         configureEmptyLayout()
         configureLoadingLayout()
+        configureFragment()
     }
 
     private fun startObserves() {
@@ -102,6 +105,15 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun configureEmptyLayout() {
         layoutInflater.inflate(emptyLayout(), emptyContainer, true)
+    }
+
+    private fun configureFragment() {
+        fragment()?.let { fragment ->
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.activityContainer, fragment, fragment.javaClass.simpleName)
+                .commit()
+        }
     }
 
 }

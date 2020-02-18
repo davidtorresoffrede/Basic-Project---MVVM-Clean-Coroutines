@@ -14,11 +14,10 @@ abstract class BaseFragment : Fragment() {
 
     abstract fun layoutId(): Int
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        inflater.inflate(layoutId(), container, false)
-
-    protected fun showProgress() = with(activity) { if (this is BaseActivity) progress.visible() }
-
-    protected fun hideProgress() = with(activity) { if (this is BaseActivity) progress.gone() }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View = inflater.inflate(layoutId(), container, false)
 
 }
