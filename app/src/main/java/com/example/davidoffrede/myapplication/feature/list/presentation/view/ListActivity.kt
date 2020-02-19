@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.davidoffrede.myapplication.R
+import com.example.davidoffrede.myapplication.core.presentation.model.Item
 import com.example.davidoffrede.myapplication.feature.detail.presentation.view.DetailActivity
 import com.example.davidoffrede.myapplication.feature.list.presentation.viewmodel.ListViewModel
 import d.offrede.base.view.BaseActivity
+import d.offrede.base.view.BaseAdapter
 import kotlinx.android.synthetic.main.activity_list.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -31,8 +33,10 @@ class ListActivity : BaseActivity() {
                 visibility = View.VISIBLE
                 layoutManager = LinearLayoutManager(context)
                 setHasFixedSize(true)
-                adapter = ListAdapter(it.data) { item ->
-                    startActivity(DetailActivity.newIntent(this@ListActivity, item))
+                adapter = BaseAdapter(it.data) {
+                    ListViewHolder(it) { item ->
+                        startActivity(DetailActivity.newIntent(this@ListActivity, item))
+                    }
                 }
             }
         }, {
