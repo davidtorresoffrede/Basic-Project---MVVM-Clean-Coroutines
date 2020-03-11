@@ -21,20 +21,19 @@ abstract class BaseFragment : Fragment() {
     @LayoutRes
     abstract fun layoutId(): Int
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        startObserves()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view = inflater.inflate(R.layout.fragment_container, container, false)
-        inflater.inflate(layoutId(), view.findViewById(R.id.fragmentContainer), false)
+        return inflater.inflate(R.layout.fragment_container, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        layoutInflater.inflate(layoutId(), fragmentContainer, true)
         configureLayouts()
-        return view
+        startObserves()
     }
 
     open fun baseViewModel(): BaseViewModel? = null
